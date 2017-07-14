@@ -1,19 +1,18 @@
 import React, { Component } from "react";
-import HeaderWithStyles from "./components/Header";
+import HeaderWithStyles from "../components/Header";
 import { MuiThemeProvider } from "material-ui/styles";
-import Nav from "./components/Nav";
 
-class App extends Component {
+class LoginPage extends Component {
   render() {
     return (
       <div>
         <MuiThemeProvider>
           <HeaderWithStyles />
         </MuiThemeProvider>
-        <Nav />
+        <div>This is Login Page</div>
       </div>
     );
   }
 }
 
-export default App;
+export default LoginPage;
