@@ -10,12 +10,10 @@ const Routes = () =>
   <div>
     <Header />
     <Switch>
-      <div>
-        <Route exact path="/" component={App} />
-        <Route path="/login" component={LoginPage} />
-        <Route path="/reservation" component={ReservationPage} />
-        <Route path="/signup" component={SignupPage} />
-      </div>
+      <Route exact path="/" component={App} />
+      <Route path="/login" component={LoginPage} />
+      <Route path="/reservation" component={ReservationPage} />
+      <Route path="/signup" component={SignupPage} />
     </Switch>
   </div>;
 

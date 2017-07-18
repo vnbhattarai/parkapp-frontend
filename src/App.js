@@ -1,7 +1,4 @@
 import React, { Component } from "react";
-import { MuiThemeProvider } from "material-ui/styles";
-// import Nav from "./components/Nav";
-// import Header from "./components/Header";
 
 class App extends Component {
   render() {

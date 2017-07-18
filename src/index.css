@@ -8,3 +8,10 @@ body {
 .brand-logo {
   margin-left: 10px;
 }
+
+.authform {
+  border: 2px dotted mediumaquamarine;
+  width: 300px;
+  margin: 0 auto;
+  text-align: center;
+}
