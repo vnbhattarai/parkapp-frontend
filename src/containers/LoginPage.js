@@ -1,5 +1,4 @@
 import React from "react";
-import Header from "../components/Header";
 import { MuiThemeProvider } from "material-ui/styles";
 import TextField from "material-ui/TextField";
 import RaisedButton from "material-ui/RaisedButton";
@@ -10,15 +9,12 @@ const Login = () =>
     <br />
     <TextField hintText="Password" floatingLabelText="Password" />
     <br />
-    <RaisedButton primary={true} label="Sign In" />{" "}
+    <RaisedButton primary={true} label="Sign In" />
   </div>;
 
 const LoginPage = () =>
   <MuiThemeProvider>
-    <div>
-      <Header />
-      <Login />
-    </div>
+    <Login />
   </MuiThemeProvider>;
 
 export default LoginPage;
