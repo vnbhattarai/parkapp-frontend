@@ -4,8 +4,9 @@ import { MuiThemeProvider } from "material-ui/styles";
 import FlatButton from "material-ui/FlatButton";
 import { Link } from "react-router-dom";
 
-const NavButtons = ["Login", "Signup", "Reservation"].map(name =>
+const NavButtons = ["Login", "Signup", "Reservation"].map((name, index) =>
   <FlatButton
+    key={index}
     containerElement={<Link to={`${name}`.toLowerCase()} />}
     label={`${name}`}
     style={{
