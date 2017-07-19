@@ -8,31 +8,26 @@ class LoginPage extends Component {
   constructor(props) {
     super(props);
     this.state = { email: "", password: "" };
-    // this.handleEmailChange = this.handleEmailChange.bind(this);
-    this.handlePasswordChange = this.handlePasswordChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.login = this.login.bind(this);
-    this.logout = this.logout.bind(this);
   }
 
-  handleEmailChange(e) {
+  handleEmailChange = e => {
     this.setState({ email: e.target.value });
-  }
+  };
 
-  handlePasswordChange(e) {
+  handlePasswordChange = e => {
     this.setState({ password: e.target.value });
-  }
+  };
 
-  handleSubmit(e) {
+  handleSubmit = e => {
     e.preventDefault();
-  }
+  };
 
   //   componentDidMount() {
   //     const reservations = App.service("reservations");
   //     const users = App.service("users");
 
   // Try to authenticate with the JWT stored in localStorage;
-  login(e) {
+  login = e => {
     e.preventDefault();
     console.log(this);
 
@@ -58,12 +53,12 @@ class LoginPage extends Component {
         console.error("Error authenticating!", error);
         this.setState({ login: null });
       });
-  }
+  };
 
-  logout(e) {
+  logout = e => {
     e.preventDefault();
     App.logout().then(console.log(`You've been logged out !!`));
-  }
+  };
 
   render() {
     return (
