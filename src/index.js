@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Routes from "./Routes";
+// import Routes from "./Routes";
+import App from "./App";
 import "./index.css";
 // import { Provider } from "react-redux";
 // import store from "./store";
@@ -9,5 +10,5 @@ injectTapEventPlugin();
 
 // import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<Routes />, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById("root"));
 // registerServiceWorker();
