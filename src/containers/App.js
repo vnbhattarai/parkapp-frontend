@@ -8,13 +8,13 @@ import { logout } from "../helpers/auth";
 import { firebaseAuth } from "../constants/firebaseConfig";
 import ReservationPage from "./protected/ReservationPage";
 
-function PrivateRoute({ component: Component, authed, ...rest }) {
+function PrivateRoute({ component: Component, authed, user, ...rest }) {
   return (
     <Route
       {...rest}
       render={props =>
         authed === true
-          ? <Component {...props} />
+          ? <Component {...props} user={user} />
           : <Redirect
               to={{ pathname: "/login", state: { from: props.location } }}
             />}
@@ -29,7 +29,7 @@ function PublicRoute({ component: Component, authed, ...rest }) {
       render={props =>
         authed === false
           ? <Component {...props} />
-          : <Redirect to="/Reservation" />}
+          : <Redirect to="/reservation" />}
     />
   );
 }
@@ -37,7 +37,8 @@ function PublicRoute({ component: Component, authed, ...rest }) {
 export default class App extends Component {
   state = {
     authed: false,
-    loading: true
+    loading: true,
+    user: ""
   };
   componentDidMount() {
     this.removeListener = firebaseAuth().onAuthStateChanged(user => {
@@ -45,7 +46,7 @@ export default class App extends Component {
         this.setState({
           authed: true,
           loading: false,
-          email: user.email
+          user: user.email
         });
       } else {
         this.setState({
@@ -81,21 +82,26 @@ export default class App extends Component {
                   </li>
                   <li>
                     {this.state.authed
-                      ? <li>
-                          <a>
-                            <button
-                              style={{
-                                border: "none",
-                                background: "transparent"
-                              }}
-                              onClick={() => {
-                                logout();
-                              }}
-                            >
-                              Logout
-                            </button>
-                          </a>
-                        </li>
+                      ? <ul>
+                          <li>
+                            <Link to="/dashboard">Dashboard</Link>
+                          </li>
+                          <li>
+                            <a>
+                              <button
+                                style={{
+                                  border: "none",
+                                  background: "transparent"
+                                }}
+                                onClick={() => {
+                                  logout();
+                                }}
+                              >
+                                Logout
+                              </button>
+                            </a>
+                          </li>
+                        </ul>
                       : <ul>
                           <li>
                             <Link to="/login">Login</Link>
@@ -124,9 +130,16 @@ export default class App extends Component {
                   />
                   <PrivateRoute
                     authed={this.state.authed}
-                    user={this.state.email}
                     path="/reservation"
+                    user={this.state.user}
                     component={ReservationPage}
+                    // render={props => <ReservationPage {...props} user="test" />}
+                  />
+                  <PrivateRoute
+                    authed={this.state.authed}
+                    path="/dashboard"
+                    user={this.state.user}
+                    component={Dashboard}
                   />
                   <Route render={() => <h3>No Match</h3>} />
                 </Switch>
