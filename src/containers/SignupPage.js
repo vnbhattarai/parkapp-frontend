@@ -1,74 +1,59 @@
 import React, { Component } from "react";
-import TextField from "material-ui/TextField";
-import { MuiThemeProvider } from "material-ui/styles";
-import RaisedButton from "material-ui/RaisedButton";
-import client from "../constants/feathers";
+import { auth } from "../helpers/auth";
 
-class SignupPage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+function setErrorMsg(error) {
+  return {
+    registerError: error.message
+  };
+}
 
-  updateField(name, ev) {
-    this.setState({ [name]: ev.target.value });
-  }
-
-  login() {
-    const { email, password } = this.state;
-
-    return client
-      .authenticate({
-        strategy: "local",
-        email,
-        password
-      })
-      .catch(error => this.setState({ error }));
-  }
-  signup() {
-    const { email, password } = this.state;
-
-    return client
-      .service("users")
-      .create({ email, password })
-      .then(() => this.login());
-  }
-
+export default class SignupPage extends Component {
+  state = { registerError: null };
+  handleSubmit = e => {
+    e.preventDefault();
+    auth(this.email.value, this.pw.value).catch(e =>
+      this.setState(setErrorMsg(e))
+    );
+  };
   render() {
     return (
-      <MuiThemeProvider>
-        <form className="authform">
-          <TextField
-            type="email"
-            name="email"
-            floatingLabelText="Email"
-            onChange={ev => this.updateField("email", ev)}
-          />
+      <div>
+        <h4>Register</h4>
+        <form onSubmit={this.handleSubmit}>
+          <div className="row">
+            <div className="input-field col s12">
+              <input
+                className="validate"
+                ref={email => (this.email = email)}
+                placeholder="Email"
+              />
+            </div>
+          </div>
+          <div className="row">
+            <div className="input-field col s12">
+              <input
+                type="password"
+                className="validate"
+                ref={pw => (this.pw = pw)}
+                placeholder="Password"
+              />
+            </div>
+          </div>
 
-          <TextField
-            type="password"
-            name="password"
-            floatingLabelText="Password"
-          />
-
-          <TextField
-            type="password"
-            name="password"
-            floatingLabelText="Confirm Password"
-            onChange={ev => this.updateField("password", ev)}
-          />
-
-          <RaisedButton
-            type="button"
-            primary={true}
-            label="Sign Up"
-            style={{ marginTop: 10 }}
-            onClick={() => this.login()}
-          />
+          {this.state.registerError &&
+            <div className="red-text">
+              <span
+                className="glyphicon glyphicon-exclamation-sign"
+                aria-hidden="true"
+              />
+              <span className="sr-only">Error:</span>
+              &nbsp;{this.state.registerError}
+            </div>}
+          <button type="submit" className="btn">
+            Register
+          </button>
         </form>
-      </MuiThemeProvider>
+      </div>
     );
   }
 }
-
-export default SignupPage;

@@ -1,108 +1,81 @@
 import React, { Component } from "react";
-import App from "../constants/feathers";
-import { MuiThemeProvider } from "material-ui/styles";
-import TextField from "material-ui/TextField";
-import RaisedButton from "material-ui/RaisedButton";
+import { login, resetPassword } from "../helpers/auth";
 
-class LoginPage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { email: "", password: "" };
-  }
-
-  handleEmailChange = e => {
-    this.setState({ email: e.target.value });
+function setErrorMsg(error) {
+  return {
+    loginMessage: error
   };
+}
 
-  handlePasswordChange = e => {
-    this.setState({ password: e.target.value });
-  };
-
+class Login extends Component {
+  state = { loginMessage: null };
   handleSubmit = e => {
     e.preventDefault();
+    login(this.email.value, this.pw.value).catch(error => {
+      this.setState(setErrorMsg("Invalid username/password."));
+    });
   };
-
-  //   componentDidMount() {
-  //     const reservations = App.service("reservations");
-  //     const users = App.service("users");
-
-  // Try to authenticate with the JWT stored in localStorage;
-  login = e => {
-    e.preventDefault();
-    console.log(this);
-
-    App.authenticate({
-      strategy: "local",
-      email: this.state.email,
-      password: this.state.password
-    })
-      .then(response => {
-        console.log("Authenticated!", response);
-        return App.passport.verifyJWT(response.accessToken);
-      })
-      .then(payload => {
-        console.log("JWT Payload", payload);
-        return App.service("users").get(payload.userId);
-      })
-      .then(user => {
-        App.set("user", user);
-        console.log("User", App.get("user"));
-        this.setState({});
-      })
-      .catch(function(error) {
-        console.error("Error authenticating!", error);
-        this.setState({ login: null });
-      });
+  resetPassword = () => {
+    resetPassword(this.email.value)
+      .then(() =>
+        this.setState(
+          setErrorMsg(`Password reset email sent to ${this.email.value}.`)
+        )
+      )
+      .catch(error => this.setState(setErrorMsg(`Email address not found.`)));
   };
-
-  logout = e => {
-    e.preventDefault();
-    App.logout().then(console.log(`You've been logged out !!`));
-  };
-
   render() {
     return (
-      <MuiThemeProvider>
+      <div>
+        <h3> Login </h3>
         <div>
-          <form className="authform" onSubmit={this.login}>
-            <div className="input-field">
-              <TextField
-                type="email"
-                name="email"
-                floatingLabelText="Email"
-                onChange={this.handleEmailChange}
-                value={this.state.email}
-              />
-            </div>
+          <div className="col s12 m7">
+            <form onSubmit={this.handleSubmit}>
+              <div className="row">
+                <div className="input-field col s12">
+                  <input
+                    className="validate"
+                    ref={email => (this.email = email)}
+                    placeholder="Email"
+                  />
+                </div>
+              </div>
+              <div className="row">
+                <div className="input-field col s12">
+                  <input
+                    type="password"
+                    className="validate"
+                    ref={pw => (this.pw = pw)}
+                    placeholder="Password"
+                  />
+                </div>
+              </div>
 
-            <div>
-              <TextField
-                type="password"
-                name="password"
-                floatingLabelText="Password"
-                value={this.state.password}
-                onChange={this.handlePasswordChange}
-              />
-            </div>
-            <div>
-              <RaisedButton
-                type="submit"
-                primary={true}
-                label="Sign In"
-                style={{ marginTop: 10 }}
-              />
-            </div>
-          </form>
-
-          <div style={{ marginTop: 20, textAlign: "center" }}>
-            <RaisedButton className="btn" type="button" onClick={this.logout}>
-              Log out
-            </RaisedButton>
+              {this.state.loginMessage &&
+                <div className="red-text">
+                  <span
+                    className="glyphicon glyphicon-exclamation-sign"
+                    aria-hidden="true"
+                  />
+                  <span className="sr-only">Error:</span>
+                  &nbsp;{this.state.loginMessage}{" "}
+                  <a
+                    href="#"
+                    onClick={this.resetPassword}
+                    className="alert-link"
+                  >
+                    Forgot Password?
+                  </a>
+                </div>}
+              <button type="submit" className="btn btn-primary">
+                Login
+              </button>
+            </form>
           </div>
         </div>
-      </MuiThemeProvider>
+      </div>
     );
   }
 }
 
-export default LoginPage;
+export default Login;
