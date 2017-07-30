@@ -10,6 +10,7 @@
     "feathers-hooks": "^2.0.2",
     "feathers-localstorage": "^1.0.0",
     "feathers-rest": "^1.8.0",
+    "firebase": "^4.2.0",
     "material-ui": "^0.18.7",
     "moment": "^2.18.1",
     "prop-types": "^15.5.10",
@@ -29,7 +30,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "postbuild": "firebase deploy"
   },
   "devDependencies": {
     "redux-logger": "^3.0.6"
