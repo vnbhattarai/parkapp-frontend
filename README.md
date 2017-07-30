@@ -15,13 +15,16 @@
 
 Then navigate to <http://localhost:3000>
 
+# Hosting 🌐:
+Hosted here: [Firebase](https://innovation-project-46354.firebaseapp.com)
+
 # Note ✋:
 
 You will need to be running local feathersjs instance with database of your choice 
 
 # What's Inside ?
 This is project is WIP.
-Regardless, screenshots from local instance of project are below:
+~~Regardless, screenshots from local instance of project are below:~~ will update soon
 
 ### Home Page (will be updated)
 ![Picture showing login or signup form](./assets/screenshots/1_home.png)
