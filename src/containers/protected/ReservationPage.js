@@ -4,7 +4,7 @@ import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 BigCalendar.setLocalizer(BigCalendar.momentLocalizer(moment));
 
-class Reservation extends Component {
+class ReservationPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -66,15 +66,21 @@ class Reservation extends Component {
           start: new Date(2015, 3, 13, 7, 0, 0),
           end: new Date(2015, 3, 13, 10, 30, 0)
         }
-      ],
-      user: this.props.user
+      ]
     };
   }
+
+  componentDidMount() {
+    console.log(this.props);
+  }
   render() {
+    // const { user } = this.props;
     return (
       <div>
         <div className="row">
-          <h3>Hello</h3>
+          <h5>
+            Hello there, {this.props.user}
+          </h5>
         </div>
         <div className="row">
           <div {...this.props}>
@@ -103,4 +109,4 @@ class Reservation extends Component {
   }
 }
 
-export default Reservation;
+export default ReservationPage;

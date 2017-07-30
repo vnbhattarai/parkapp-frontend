@@ -18,41 +18,45 @@ export default class SignupPage extends Component {
   render() {
     return (
       <div>
-        <h4>Register</h4>
-        <form onSubmit={this.handleSubmit}>
-          <div className="row">
-            <div className="input-field col s12">
-              <input
-                className="validate"
-                ref={email => (this.email = email)}
-                placeholder="Email"
-              />
-            </div>
-          </div>
-          <div className="row">
-            <div className="input-field col s12">
-              <input
-                type="password"
-                className="validate"
-                ref={pw => (this.pw = pw)}
-                placeholder="Password"
-              />
-            </div>
-          </div>
+        <h3>Sign Up</h3>
+        <div>
+          <div className="col s12 m7">
+            <form onSubmit={this.handleSubmit}>
+              <div className="row">
+                <div className="input-field col s12">
+                  <input
+                    className="validate"
+                    ref={email => (this.email = email)}
+                    placeholder="Email"
+                  />
+                </div>
+              </div>
+              <div className="row">
+                <div className="input-field col s12">
+                  <input
+                    type="password"
+                    className="validate"
+                    ref={pw => (this.pw = pw)}
+                    placeholder="Password"
+                  />
+                </div>
+              </div>
 
-          {this.state.registerError &&
-            <div className="red-text">
-              <span
-                className="glyphicon glyphicon-exclamation-sign"
-                aria-hidden="true"
-              />
-              <span className="sr-only">Error:</span>
-              &nbsp;{this.state.registerError}
-            </div>}
-          <button type="submit" className="btn">
-            Register
-          </button>
-        </form>
+              {this.state.registerError &&
+                <div className="red-text">
+                  <span
+                    className="glyphicon glyphicon-exclamation-sign"
+                    aria-hidden="true"
+                  />
+                  <span className="sr-only">Error:</span>
+                  &nbsp;{this.state.registerError}
+                </div>}
+              <button type="submit" className="btn">
+                Register
+              </button>
+            </form>
+          </div>
+        </div>
       </div>
     );
   }

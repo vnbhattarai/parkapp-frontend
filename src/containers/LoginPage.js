@@ -7,7 +7,7 @@ function setErrorMsg(error) {
   };
 }
 
-class Login extends Component {
+class LoginPage extends Component {
   state = { loginMessage: null };
   handleSubmit = e => {
     e.preventDefault();
@@ -78,4 +78,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default LoginPage;
