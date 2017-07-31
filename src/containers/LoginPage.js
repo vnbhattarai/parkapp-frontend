@@ -27,50 +27,56 @@ class LoginPage extends Component {
   render() {
     return (
       <div>
-        <h3> Login </h3>
         <div>
-          <div className="col s12 m7">
-            <form onSubmit={this.handleSubmit}>
-              <div className="row">
-                <div className="input-field col s12">
-                  <input
-                    className="validate"
-                    ref={email => (this.email = email)}
-                    placeholder="Email"
-                  />
+          <div>
+            <div className="authform">
+              <h3> Login </h3>
+              <form onSubmit={this.handleSubmit}>
+                <div className="row">
+                  <div className="input-field col s12">
+                    <input
+                      className="validate"
+                      ref={email => (this.email = email)}
+                      placeholder="Email"
+                    />
+                  </div>
                 </div>
-              </div>
-              <div className="row">
-                <div className="input-field col s12">
-                  <input
-                    type="password"
-                    className="validate"
-                    ref={pw => (this.pw = pw)}
-                    placeholder="Password"
-                  />
+                <div className="row">
+                  <div className="input-field col s12">
+                    <input
+                      type="password"
+                      className="validate"
+                      ref={pw => (this.pw = pw)}
+                      placeholder="Password"
+                    />
+                  </div>
                 </div>
-              </div>
 
-              {this.state.loginMessage &&
-                <div className="red-text">
-                  <span
-                    className="glyphicon glyphicon-exclamation-sign"
-                    aria-hidden="true"
-                  />
-                  <span className="sr-only">Error:</span>
-                  &nbsp;{this.state.loginMessage}{" "}
-                  <a
-                    href="#"
-                    onClick={this.resetPassword}
-                    className="alert-link"
-                  >
-                    Forgot Password?
-                  </a>
-                </div>}
-              <button type="submit" className="btn btn-primary">
-                Login
-              </button>
-            </form>
+                {this.state.loginMessage &&
+                  <div className="red-text">
+                    <span
+                      className="glyphicon glyphicon-exclamation-sign"
+                      aria-hidden="true"
+                    />
+                    <span className="sr-only">Error:</span>
+                    &nbsp;{this.state.loginMessage}{" "}
+                    <a
+                      href="#"
+                      onClick={this.resetPassword}
+                      className="alert-link"
+                    >
+                      Forgot Password?
+                    </a>
+                  </div>}
+                <button
+                  type="submit"
+                  style={{ "background-color": "#2196F3" }}
+                  className="btn btn-primary"
+                >
+                  Login
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </div>

@@ -18,9 +18,9 @@ export default class SignupPage extends Component {
   render() {
     return (
       <div>
-        <h3>Sign Up</h3>
         <div>
-          <div className="col s12 m7">
+          <div className="authform">
+            <h3>Sign Up</h3>
             <form onSubmit={this.handleSubmit}>
               <div className="row">
                 <div className="input-field col s12">
@@ -51,8 +51,12 @@ export default class SignupPage extends Component {
                   <span className="sr-only">Error:</span>
                   &nbsp;{this.state.registerError}
                 </div>}
-              <button type="submit" className="btn">
-                Register
+              <button
+                type="submit"
+                className="btn"
+                style={{ "background-color": "#2196F3" }}
+              >
+                Sign Up
               </button>
             </form>
           </div>
