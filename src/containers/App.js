@@ -7,6 +7,19 @@ import Dashboard from "./protected/Dashboard";
 import { logout } from "../helpers/auth";
 import { firebaseAuth } from "../constants/firebaseConfig";
 import ReservationPage from "./protected/ReservationPage";
+import { MuiThemeProvider } from "material-ui/styles";
+import FlatButton from "material-ui/FlatButton";
+import AppBar from "material-ui/AppBar";
+
+const styles = {
+  appBar: {
+    "background-color": "#2196F3"
+  },
+  buttonColor: {
+    color: "white",
+    fontSize: "200%"
+  }
+};
 
 function PrivateRoute({ component: Component, authed, user, ...rest }) {
   return (
@@ -61,59 +74,60 @@ export default class App extends Component {
   }
   render() {
     return this.state.loading === true
-      ? <h1>Loading</h1>
+      ? <h3>Loading</h3>
       : <BrowserRouter>
           <div>
-            <nav className="blue darken-1">
-              <div className="nav-wrapper ">
-                <Link
-                  to="/"
-                  className="brand-logo"
-                  style={{ paddingLeft: "10px" }}
-                >
-                  Park App
-                </Link>
-                <ul className="right hide-on-med-and-down">
-                  <li>
-                    <Link to="/">Home</Link>
-                  </li>
-                  <li>
-                    <Link to="/reservation">Reservation</Link>
-                  </li>
-                  <li>
+            <MuiThemeProvider>
+              <AppBar
+                title="Park App"
+                style={styles.appBar}
+                iconElementRight={
+                  <div>
+                    <FlatButton
+                      label="Home"
+                      style={styles.buttonColor}
+                      containerElement={<Link to="/" />}
+                      hoverColor="#2962FF"
+                    />
+                    <FlatButton
+                      label="Reservation"
+                      style={styles.buttonColor}
+                      containerElement={<Link to="/reservation" />}
+                      hoverColor="#2962FF"
+                    />
+                    <FlatButton
+                      label="Dashboard"
+                      style={styles.buttonColor}
+                      containerElement={<Link to="/dashboard" />}
+                      hoverColor="#2962FF"
+                    />
                     {this.state.authed
-                      ? <ul>
-                          <li>
-                            <Link to="/dashboard">Dashboard</Link>
-                          </li>
-                          <li>
-                            <a>
-                              <button
-                                style={{
-                                  border: "none",
-                                  background: "transparent"
-                                }}
-                                onClick={() => {
-                                  logout();
-                                }}
-                              >
-                                Logout
-                              </button>
-                            </a>
-                          </li>
-                        </ul>
-                      : <ul>
-                          <li>
-                            <Link to="/login">Login</Link>
-                          </li>
-                          <li>
-                            <Link to="/signup">Sign Up</Link>
-                          </li>
-                        </ul>}
-                  </li>
-                </ul>
-              </div>
-            </nav>
+                      ? <FlatButton
+                          label="Logout"
+                          style={styles.buttonColor}
+                          containerElement={<Link to="#" />}
+                          onClick={() => logout()}
+                          hoverColor="#2962FF"
+                        />
+                      : <FlatButton>
+                          <FlatButton
+                            style={{ marginRight: "2px" }}
+                            label="Log in"
+                            style={styles.buttonColor}
+                            containerElement={<Link to="/login">Log in</Link>}
+                            hoverColor="#2962FF"
+                          />
+                          <FlatButton
+                            label="Sign Up"
+                            style={styles.buttonColor}
+                            containerElement={<Link to="/signup" />}
+                            hoverColor="#2962FF"
+                          />
+                        </FlatButton>}
+                  </div>
+                }
+              />
+            </MuiThemeProvider>
             <div className="container">
               <div className="row">
                 <Switch>
