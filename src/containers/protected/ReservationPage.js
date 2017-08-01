@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import BigCalendar from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
+import ReservationSelector from "../../components/ReservationSelector";
 BigCalendar.setLocalizer(BigCalendar.momentLocalizer(moment));
 
 class ReservationPage extends Component {
@@ -82,6 +83,7 @@ class ReservationPage extends Component {
             Hello there, {this.props.user}
           </h5>
         </div>
+        <ReservationSelector />
         <div className="row">
           <div {...this.props}>
             <h6 className="callout">

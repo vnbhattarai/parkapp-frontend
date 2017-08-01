@@ -13,7 +13,7 @@ import AppBar from "material-ui/AppBar";
 
 const styles = {
   appBar: {
-    "background-color": "#2196F3"
+    backgroundColor: "#2196F3"
   },
   buttonColor: {
     color: "white",
@@ -42,7 +42,7 @@ function PublicRoute({ component: Component, authed, ...rest }) {
       render={props =>
         authed === false
           ? <Component {...props} />
-          : <Redirect to="/reservation" />}
+          : <Redirect to="/dashboard" />}
     />
   );
 }

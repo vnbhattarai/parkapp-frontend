@@ -5,12 +5,13 @@ const Dashboard = props => {
     <div>
       <div className="row">
         <h5>
-          Hi {props.user}
+          Hi {props.user}, Your upcoming reservations
         </h5>
       </div>
       <div className="row">
         <div className="col s12" />
-        <h5 style={{ textAlign: "center" }}>Your upcoming reservations</h5>
+        <br />
+        <br />
         <table>
           <thead>
             <tr>
