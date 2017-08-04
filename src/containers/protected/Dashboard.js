@@ -1,12 +1,12 @@
 import React from "react";
 
-const Dashboard = props => {
+const Dashboard = () => {
   return (
     <div>
       <div className="row">
-        <h5>
-          Hi {props.user}, Your upcoming reservations
-        </h5>
+        <h6> This is protected page</h6>
+        <br />
+        <h5>Hi Your upcoming reservations</h5>
       </div>
       <div className="row">
         <div className="col s12" />

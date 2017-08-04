@@ -1,14 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom";
-// import Routes from "./Routes";
 import App from "./containers/App";
-import "./index.css";
-// import { Provider } from "react-redux";
-// import store from "./store";
+import { Provider } from "react-redux";
+import { configureStore } from "./store/configureStore";
+import registerServiceWorker from "./registerServiceWorker";
 import injectTapEventPlugin from "react-tap-event-plugin";
+
 injectTapEventPlugin();
+const store = configureStore();
 
-// import registerServiceWorker from './registerServiceWorker';
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById("root")
+);
 
-ReactDOM.render(<App />, document.getElementById("root"));
-// registerServiceWorker();
+registerServiceWorker();
