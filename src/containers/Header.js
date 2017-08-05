@@ -55,9 +55,8 @@ class Header extends React.Component {
                     onClick={() => this.handleSignout()}
                     hoverColor="#2962FF"
                   />
-                : <FlatButton>
+                : <FlatButton hoverColor="#2196F3">
                     <FlatButton
-                      style={{ marginRight: "2px" }}
                       label="Log in"
                       style={styles.buttonColor}
                       containerElement={<Link to="/login">Log in</Link>}

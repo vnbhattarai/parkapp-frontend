@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import App from "./containers/App";
 import { Provider } from "react-redux";
 import { configureStore } from "./store/configureStore";
-import registerServiceWorker from "./registerServiceWorker";
+// import registerServiceWorker from "./registerServiceWorker";
 import injectTapEventPlugin from "react-tap-event-plugin";
 
 injectTapEventPlugin();
@@ -16,4 +16,4 @@ ReactDOM.render(
   document.getElementById("root")
 );
 
-registerServiceWorker();
+// registerServiceWorker();
