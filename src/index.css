@@ -1,9 +1,0 @@
-.authError {
-  color: red;
-  font-size: 16px;
-}
-
-.authForm {
-  display: table; /* shrinks to fit conntent */
-  margin: auto;
-}
